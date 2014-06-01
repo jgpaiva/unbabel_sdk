@@ -1,0 +1,6 @@
+{
+    "objects": [
+                    {"topic": {"name": "politics"}}, 
+                    {"topic": {"name": "gossip"}}
+                ]
+}

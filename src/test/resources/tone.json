@@ -1,0 +1,8 @@
+{
+    "objects": [
+                {"tone": {"description": "Informal style", "name": "Informal"}}, 
+                {"tone": {"description": "Friendly style", "name": "Friendly"}}, 
+                {"tone": {"description": "Business style", "name": "Business"}}, 
+                {"tone": {"description": "Formal style", "name": "Formal"}}
+                ]
+}
