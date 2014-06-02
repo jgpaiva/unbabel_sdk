@@ -29,10 +29,14 @@ public class Translation {
    public ArrayList<String> topics = null;
    @JsonProperty
    public Integer price = null;
+
+
    @JsonProperty
    public String client = null;
    @JsonProperty("resource_uri")
    public String resourceUri = null;
+   @JsonProperty
+   public String balance = null;
 
    public Translation() {
    }
@@ -71,7 +75,7 @@ public class Translation {
          throw new MarshalingException(e);
       }
    }
-   
+
    public boolean equals(Object other){
       if(!(other instanceof Translation))
          return false;
