@@ -1,35 +1,36 @@
 package com.unbabel.sdk;
 
-import java.io.IOException;
-
-import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 
 public class LangPair {
-   @JsonProperty("source_language")
-	public Language sourceLanguage;
-   @JsonProperty("target_language")
-	public Language targetLanguage;
+	@JsonProperty("source_language")
+	protected Language sourceLanguage;
+	@JsonProperty("target_language")
+	protected Language targetLanguage;
+
+	@JsonCreator
+	public static LangPair fromJSON(String obj_json){
+		return Utils.objectFromJSON(obj_json, LangPair.class);
+	}
 
 	public String toString() {
 		return String.format("%s_%s", sourceLanguage, targetLanguage);
 	}
-	
-   @JsonCreator
-   public static LangPair fromJSON(String raw_response) throws MarshalingException{
-      ObjectMapper mapper = new ObjectMapper();
-      try {
-         LangPair langPair = mapper.readValue(raw_response, LangPair.class);
-         return langPair;
-      } catch (JsonParseException e) {
-         throw new MarshalingException(e);
-      } catch (JsonMappingException e) {
-         throw new MarshalingException(e);
-      } catch (IOException e) {
-         throw new MarshalingException(e);
-      }
-   }
+
+	public Language getSourceLanguage() {
+		return sourceLanguage;
+	}
+
+	public void setSourceLanguage(Language sourceLanguage) {
+		this.sourceLanguage = sourceLanguage;
+	}
+
+	public Language getTargetLanguage() {
+		return targetLanguage;
+	}
+
+	public void setTargetLanguage(Language targetLanguage) {
+		this.targetLanguage = targetLanguage;
+	}
 }

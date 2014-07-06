@@ -2,16 +2,11 @@ package com.unbabel.sdk;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
-import org.codehaus.jackson.JsonFactory;
-import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
 import org.junit.Test;
 
 public class ApiTest {
@@ -19,7 +14,7 @@ public class ApiTest {
    public void testTranslation() throws IOException {
       String raw_translation = Utils.fileToString("translation.json");
       Translation translation = Translation.fromJSON(raw_translation);
-      assertEquals(translation.uid, "29de9551d9");
+      assertEquals(translation.uid, "89500a6e77");
    }
 
    @Test
@@ -70,7 +65,7 @@ public class ApiTest {
       t.sourceLanguage = "en";
       t.targetLanguage = "pt";
       t.text = "some example text";
-      String raw_response = api.post(TEST_URL, t.toJSON());
+      String raw_response = api.post(TEST_URL, Utils.objectToJSON(t));
       ObjectMapper mapper = new ObjectMapper();
       JsonNode rootNode = mapper.readTree(raw_response);
       JsonNode headers = rootNode.get("headers");
@@ -82,5 +77,19 @@ public class ApiTest {
       assertEquals(contentType.asText(), "application/json");
       JsonNode json = rootNode.get("json");
       assertEquals(Translation.fromJSON(json.toString()), t);
+   }
+   
+   @Test
+   public void testAccount() throws IOException {
+      String account_raw = Utils.fileToString("account.json");
+      Account account = Account.fromJSON(account_raw);
+      assertEquals(account.email, "jgpaiva@gmail.com");
+   }
+   
+   @Test
+   public void testOrder() throws IOException {
+      String order_raw = Utils.fileToString("order.json");
+      Order order = Order.fromJSON(order_raw);
+      assertEquals(order.status, "New");
    }
 }
