@@ -15,10 +15,11 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
+
+import com.unbabel.sdk.exceptions.MarshalingException;
 
 public class Utils {
 	protected static <T> ArrayList<T> decodeObjectArray(String raw_response,

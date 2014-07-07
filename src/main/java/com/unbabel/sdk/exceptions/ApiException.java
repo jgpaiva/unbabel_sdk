@@ -1,4 +1,4 @@
-package com.unbabel.sdk;
+package com.unbabel.sdk.exceptions;
 
 /**
  * Exception for a general error
@@ -10,5 +10,9 @@ public class ApiException extends RuntimeException {
 
 	public ApiException(String message, Exception e) {
 		super(message, e);
+	}
+
+	public ApiException(String message) {
+		super(message);
 	}
 }
