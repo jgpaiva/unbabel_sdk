@@ -34,7 +34,7 @@ public class RESTClient {
 
 			HttpEntity entity = response.getEntity();
 			int statusCode = response.getStatusLine().getStatusCode();
-			String respBody = IOUtils.toString(entity.getContent());
+			String respBody = IOUtils.toString(entity.getContent(),"UTF-8");
 
 			try {
 				if (statusCode == HttpURLConnection.HTTP_OK) {
